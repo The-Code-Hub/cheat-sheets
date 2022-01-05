@@ -1,22 +1,18 @@
-forked from 
-https://github.com/ThibaultJanBeyer/cheatsheets
-
-[back to overwiev](/../..)  
-Looking for [Rails](../master/Ruby-on-Rails-Cheatsheet.md)?
+This file was originally forked from https://github.com/ThibaultJanBeyer/cheatsheets
 
 # Ruby Cheatsheet
 
 ##### Table of Contents
 
 - [Basics](#basics)  
-- [Vars, Constants, Arrays, Hashes & Symbols](#vars-constants-arrays-hashes--symbols)  
+- [Variables](#variables)  
 - [Methods](#methods)
 - [Classes](#classes)
 - [Modules](#modules)
 - [Blocks & Procs](#blocks--procs)  
 - [Lambdas](#lambdas)
 - [Calculation](#calculation)  
-- [Comment](#comment)  
+- [Comments](#comments)  
 - [Conditions](#conditions)  
 - [Printing & Putting](#printing--putting)  
 - [User Input](#user-input)  
@@ -25,60 +21,21 @@ Looking for [Rails](../master/Ruby-on-Rails-Cheatsheet.md)?
 - [Useful Methods](#useful-methods)
 
 ## Basics
-
+- Everything in ruby is a method, even if it looks like a function
 - `$ irb`: to write ruby in the terminal
 - don't use `'` in ruby, use `"` instead
-- you can replace most `{}` with `do end` and vice versa –– not true for hashes or `#{}` escapings
-- Best Practice: end names that produce booleans with question mark
-- CRUD: create, read, update, delete
-- `[1,2].map(&:to_i)`
-- `integer`: number without decimal
-- `float`: number with decimal
-- tag your variables:
-- - `$`: global variable
-- - `@`: instance variable
-- - `@@`: class variable
-- `1_000_000`: 1000000 –– just easier to read\*
 
-## Vars, Contants, Arrays, Hashes & Symbols
+## Variables
 
 ```Ruby
 my_variable = “Hello”
-my_variable.capitalize! # ! changes the value of the var same as my_name = my_name.capitalize
-my_variable ||= "Hi" # ||= is a conditional assignment only set the variable if it was not set before.
+my_variable ||= "Hi" # Only create the variable if it was not set before.
 ```
 
 ### Constants
 
 ```Ruby
 MY_CONSTANT = # something
-```
-
-### Arrays
-
-```Ruby
-my_array = [a,b,c,d,e]
-my_array[1] # b
-my_array[2..-1] # c , d , e
-multi_d = [[0,1],[0,1]]
-[1, 2, 3] << 4 # [1, 2, 3, 4] same as [1, 2, 3].push(4)
-```
-
-### Hashes
-
-```Ruby
-hash = { "key1" => "value1", "key2" => "value2" } # same as objects in JavaScript
-hash = { key1: "value1", key2: "value2" } # the same hash using symbols instead of strings
-my_hash = Hash.new # same as my_hash = {} – set a new key like so: pets["Stevie"] = "cat"
-pets["key1"] # value1
-pets["Stevie"] # cat
-my_hash = Hash.new("default value")
-hash.select{ |key, value| value > 3 } # selects all keys in hash that have a value greater than 3
-hash.each_key { |k| print k, " " } # ==> key1 key2
-hash.each_value { |v| print v } # ==> value1value2
-
-my_hash.each_value { |v| print v, " " }
-# ==> 1 2 3
 ```
 
 ### Symbols
@@ -94,8 +51,45 @@ my_hash.each_value { |v| print v, " " }
 my_hash = { key: "value", key2: "value" } # is equal to { :key => "value", :key2 => "value" }
 ```
 
-#### Functions to create Arrays
+## Data Structures
 
+### Arrays
+
+```Ruby
+my_array = ["a", "b", "c", "d", "e"]
+my_array[0] # "a" array's indexes always start at 0
+
+# Using negative numbers to access the last elements of the array
+my_array[-1] # "e"
+my_array[2..-1] # "c", "d", "e"
+
+# Array of array's, matrix
+multi_d = [[0,1],[0,1]] 
+multi_d[0][0] # Accessing values
+
+# Pushing new values to the array
+[1, 2, 3] << 4 # [1, 2, 3, 4]
+[1, 2, 3].push(4) # Same as above
+```
+
+### Hashes
+`Key => value` pair
+```Ruby
+hash = { "key1" => "value1", "key2" => "value2" }
+
+# The same hash using symbols instead of strings
+hash = { key1: "value1", key2: "value2" } 
+
+my_hash = Hash.new("default value")
+hash.select{ |key, value| value > 3 } # selects all keys in hash that have a value greater than 3
+hash.each_key { |k| print k, " " } # ==> key1 key2
+hash.each_value { |v| print v } # ==> value1value2
+
+my_hash.each_value { |v| print v, " " }
+# ==> 1 2 3
+```
+
+#### Methods to create Arrays
 ```Ruby
 "bla,bla".split(“,”) # takes string and returns an array (here  ["bla","bla"])
 ```
@@ -251,17 +245,17 @@ Diff between procs and lambdas:
 - `"A " << "B"` => `"A B"` but `"A " + "B"` would work as well but `"A " + 4 + " B"` not. So rather use string interpolation (`#{4}`)
 - `"A #{4} B"` => `"A 4 B"`
 
-## Commenting
+## Comments
 
 ```Ruby
 =begin
-Bla
-Multyline comment
+Multiline comment
+Needs a begin and end block.
 =end
 ```
 
 ```Ruby
-# single line comment
+# inline comment
 ```
 
 ## Conditions
@@ -284,31 +278,36 @@ puts 3 > 4 ? "if true" : "else" # else will be putted
 ### Unless
 
 ```Ruby
-unless false # unless checks if the statement is false (opposite to if).
-puts “I’m here”
+# Unless is the opposite from if, below it checks if true
+unless false
+  puts “I’m here”
 else
-puts “not here”
+  puts “not here”
 end
-# or
+
+# Inline
 puts "not printed" unless true
 ```
 
 ### Case
 
 ```Ruby
-case my_var
-  when "some value"
-    ###
-  when "some other value"
-    ###
-  else
-    ###
+number = 5
+
+case number
+when 0
+    puts 'zero'
+when 1...5
+    puts 'between 1 and 4'
+else
+    puts '5 or higher'
 end
-# or
-case my_var
-  when "some value" then ###
-  when "some other value" then ###
-  else ###
+
+# Inline when cases
+case number
+  when 0 then puts 'zero'
+  when 1..5 then puts 'between 1 and 4'
+  else puts '5 or higher'
 end
 ```
 
@@ -322,7 +321,7 @@ end
 ## Printing & Putting
 
 ```Ruby
-print "bla"
+print "bla" # Print the comment
 puts "test" # puts the text in a separate line
 ```
 
@@ -345,8 +344,8 @@ puts "test" # puts the text in a separate line
 ## User Input
 
 ```Ruby
-gets # is the Ruby equivalent to prompt in javascript (method that gets input from the user)
-gets.chomp # removes extra line created after gets (usually used like this)
+gets # Get the user input
+gets.chomp # Remove extra lines, most get uses always come with chomp
 ```
 
 ## Loops
@@ -451,3 +450,7 @@ array.sort! { |a, b| b <=> a } # to sort from Z to A instead of A to Z
 cube.call # implying that cube is a proc, call calls procs directly
 Time.now # displays the actual time
 ```
+
+## Conventions
+- Classes and Modules are written in PascalCase (UpperCamelCase)
+- Methods ending with `?` denote that they return a boolean value
