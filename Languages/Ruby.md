@@ -4,7 +4,8 @@ This file was originally forked from https://github.com/ThibaultJanBeyer/cheatsh
 
 ##### Table of Contents
 
-- [Basics](#basics)  
+- [Basics](#basics)
+- [Data Structures](#data-structures)
 - [Variables](#variables)  
 - [Methods](#methods)
 - [Classes](#classes)
@@ -20,10 +21,9 @@ This file was originally forked from https://github.com/ThibaultJanBeyer/cheatsh
 - [Sorting & Comparing](#sorting--comparing)  
 - [Useful Methods](#useful-methods)
 
-## Basics
+## Misc
 - Everything in ruby is a method, even if it looks like a function
-- `$ irb`: to write ruby in the terminal
-- don't use `'` in ruby, use `"` instead
+- `$ irb`: is used as an interactive ruby programming shell on the terminal
 
 ## Variables
 
@@ -73,6 +73,7 @@ multi_d[0][0] # Accessing values
 ```
 
 ### Hashes
+
 `Key => value` pair
 ```Ruby
 hash = { "key1" => "value1", "key2" => "value2" }
@@ -89,14 +90,18 @@ my_hash.each_value { |v| print v, " " }
 # ==> 1 2 3
 ```
 
-#### Methods to create Arrays
+#### Useful methods
+
 ```Ruby
-"bla,bla".split(“,”) # takes string and returns an array (here  ["bla","bla"])
+"one, two".split(“,”) # split according to the parameter and return a list o the remaining elements ['one', 'two']
+
+int_array = [1, 2, 3, 4]
+int_array.join # Join the int array to a string '1234'
+int_array.shuffle # Randomly changes the order of the values inside the array
+
 ```
 
 ## Methods
-
-**Methods**
 
 ```Ruby
 def greeting(hello, *names) # *names is a split argument, takes several parameters passed in an array 
@@ -112,31 +117,38 @@ end
 
 ## Classes
 
-_custom objects_
-
 ```Ruby
-class Person # class names are rather written in PascalCase (It is similar to camelCase, but the first letter is capitalized)
+class Person
+  # @@ denotes a class variable that is always initialized when the class is created
   @@count = 0
+  
+  # Attributes are used so that you can access (get and set) the instance variables outside
+  # this class, they can be put under 'private' or 'protected' too.
   attr_reader :name # make it readable
   attr_writer :name # make it writable
   attr_accessor :name # makes it readable and writable
 
-  def Methodname(parameter)
-    @classVariable = parameter
+  # Initialize function is used to take the parameters when the class is being created
+  def initialize(name)
+    # @ denotes a class instance variable that is initialized with a value that comes from the initialize parameters
+    @name = name
     @@count += 1
   end
 
-  def self.show_classVariable
-    @classVariable
-  end
-
-  def Person.get_counts # is a class method
+  # Class methods
+  def self.get_counts
     return @@count
   end
 
   private
 
-  def private_method; end # Private methods go here
+  # Private methods go here
+  def private_method; end 
+  
+  protected
+  
+  # Protected methods go here
+  def protected_method; end
 end
 
 matz = Person.new("Yukihiro")
@@ -270,9 +282,10 @@ puts “elsif”
 else
 puts “false”
 end
-# or
+
+# Inline if statements
 puts "be printed" if true
-puts 3 > 4 ? "if true" : "else" # else will be putted
+puts 3 > 4 ? "if true" : "else" # Ternary operator, else will be putted
 ```
 
 ### Unless
