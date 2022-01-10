@@ -358,7 +358,7 @@ puts "test" # puts the text in a separate line
 
 ```Ruby
 gets # Get the user input
-gets.chomp # Remove extra lines, most get uses always come with chomp
+gets.chomp # Remove extra lines from the input, this is the most common way to get input
 ```
 
 ## Loops
