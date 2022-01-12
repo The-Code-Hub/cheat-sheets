@@ -129,6 +129,9 @@ int_array = [1, 2, 3, 4]
 # Array always start at index 0
 int_array[0] # 1
 
+# Access by index range
+int_array[0:2] # 1, 2, 3
+
 # Access the last element
 int_array[-1] # 4
 
