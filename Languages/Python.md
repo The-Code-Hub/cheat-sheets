@@ -10,6 +10,7 @@
 - [Loops](#loops)
 - [Functions](#functions)
 - [Classes](#classes)
+- [Indentation](#indentation)
 - [Naming Conventions](#naming-conventions)
 - [Comments](#comments)
 - [Error handling](#error-handling)
