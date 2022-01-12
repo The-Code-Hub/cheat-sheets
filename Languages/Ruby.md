@@ -59,6 +59,9 @@ my_hash = { key: "value", key2: "value" } # is equal to { :key => "value", :key2
 my_array = ["a", "b", "c", "d", "e"]
 my_array[0] # "a" array's indexes always start at 0
 
+# Access arrays with index ranges
+my_array[0..2] # "a", "b", "c"
+
 # Using negative numbers to access the last elements of the array
 my_array[-1] # "e"
 my_array[2..-1] # "c", "d", "e"
