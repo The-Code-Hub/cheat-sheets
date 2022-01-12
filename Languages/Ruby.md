@@ -5,6 +5,7 @@ This file was originally forked from https://github.com/ThibaultJanBeyer/cheatsh
 ##### Table of Contents
 
 - [Basics](#basics)
+- [Statements](#statements)
 - [Data Structures](#data-structures)
 - [Variables](#variables)  
 - [Methods](#methods)
@@ -49,6 +50,20 @@ MY_CONSTANT = # something
 "test".intern # :test
 # Symbols can be used like this as well:
 my_hash = { key: "value", key2: "value" } # is equal to { :key => "value", :key2 => "value" }
+```
+## Statements
+Some languages use semicolons or just indentation to define statements, in ruby we use blocks with `end`
+```Ruby
+# ON variables we don't need to use end blocks
+name = 'alice'
+
+# Methods example
+def method
+  # Your code goes here
+end
+
+# One line statement
+class DerivedClass < BaseClass; end 
 ```
 
 ## Data Structures
@@ -161,17 +176,19 @@ matz.show_name # Yukihiro
 ### Inheritance
 
 ```Ruby
-class DerivedClass < BaseClass; end # if you want to end a Ruby statement without going to a new line, you can just type a semicolon.
-
 class DerivedClass < Base
   def some_method
-    super(optional args) # When you call super from inside a method, that tells Ruby to look in the superclass of the current class and find a method with the same name as the one from which super is called. If it finds it, Ruby will use the superclass' version of the method.
+    # When you call super from inside a method, that tells Ruby to look in the superclass of the current class 
+    # and find a method with the same name as the one from which super is called.           
+    # If it finds it, Ruby will use the superclass' version of the method.
+    super(optional args) 
       # Some stuff
     end
   end
 end
 
-# Any given Ruby class can have only one superclass. Use mixins if you want to incorporate data or behavior from several classes into a single class.
+# Any given Ruby class can have only one superclass. 
+# Use mixins if you want to incorporate data or behavior from several classes into a single class.
 ```
 
 ## Modules
