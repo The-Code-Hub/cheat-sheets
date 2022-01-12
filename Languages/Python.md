@@ -100,7 +100,7 @@ if number == 0:
 elif number > 0 and number <= 10:
     print("between 1 and 10")
 else:
-		print("bigger than 10")
+    print("bigger than 10")
 ```
 
 ## Data structures
@@ -157,7 +157,7 @@ person: dict[int, str]
 name_list = ["jean", "alice", "herbert"]
 
 for name in name_list:
-		print(f"hello {name}!")
+    print(f"hello {name}!")
 
 # "jean"
 # "alice"
@@ -197,13 +197,13 @@ def add(n1: int, n2: int) -> int:
 ```python
 class Person:
     def __init__(self) -> None:
-				# The self keyword denotes that the variable 
-				# can be accessed by the entire class methods.
+        # The self keyword denotes that the variable 
+        # can be accessed by the entire class methods.
         self.global_value = 10
 
-		# Methods always need to receive self
+	# Methods always need to receive self
     def method(self, value: int) -> None:
-				print("i'm a method")
+        print("i'm a method")
 
 me = Person()
 me.method()
@@ -216,18 +216,31 @@ me.method()
 
 ```python
 class Dog:
-		# Receive parameters after self
-		def __init__(self, age: int, name: str) -> None:
-				self.age = age
-				self.name = name
+    # Receive parameters after self
+    def __init__(self, age: int, name: str) -> None:
+		 self.age = age
+		 self.name = name
 
-		def bark(self) -> None:
-			print(f"{self.name} is barking")
+    def bark(self) -> None:
+        print(f"{self.name} is barking")
 
 my_dog = Dog(10, "doug")
 my_dog.bark()
 
 # Output: doug is barking
+```
+## Indentation
+Python uses levels of indentation to differ statements, as seen above, the level of indentation is denoted by a `:`
+Always indent using 4 spaces.
+```python
+# Not putting the correct indentation can leave messy problems
+def no_indentation:
+print("fail")
+
+# Or
+
+for i in 1..10:
+print(i) # i is not present in this scope because is not in the correct indentation
 ```
 
 ## Naming conventions
@@ -262,13 +275,12 @@ class TallPerson
 ```python
 # Docstrings are explanations of what classes and functions do
 def say_hi(name: str) -> None:
-   """Receive a string and greet it!"""
-		print(f"hello {name}!")
+    """Receive a string and greet it!"""
+    print(f"hello {name}!")
 
 class Person:
-		"""Describes a real person"""
-
-	# They are often used by IDE's to provide fast feedback on their usage
+    """Describes a real person"""
+    # They are often used by IDE's to provide fast feedback on their usage
 ```
 
 ## Error handling
@@ -279,12 +291,12 @@ try:
     crash = 10 / 0
 
 except ZeroDivisionError:
-		# handle the error here
-		print("You can't devide by 0")
+    # handle the error here
+    print("You can't devide by 0")
 
 finally:
-		# Only executed after the try/except
-		# finally is totally optional
+    # Only executed after the try/except
+    # finally is totally optional
 ```
 
 ### Chain except
@@ -294,8 +306,8 @@ try:
     crash = 10 / 0
 
 except ZeroDivisionError:
-		# handle the error here
-		print("You can't devide by 0")
+    # handle the error here
+    print("You can't devide by 0")
 
 except TypeError:
 		...
@@ -308,7 +320,7 @@ except ValueError:
 ```python
 # if for some reason you want to throw an exception yourself:
 if number > 10:
-		raise Exception("Number cannot be bigger than 10")
+    raise Exception("Number cannot be bigger than 10")
 ```
 
 ## Definition skipping
@@ -317,10 +329,10 @@ if number > 10:
 # Sometimes it can be useful to skip a method or function definition
 
 def to_implement(n1: int, name: str) -> bool:
-		...
+    ...
 
 class Skip:
-		...
+    ...
 ```
 
 ## Type casting
