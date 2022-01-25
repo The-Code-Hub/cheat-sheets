@@ -181,8 +181,10 @@ while flag {
 ### List comprehension
 
 ```python
-# Multiply every number in a given range
+# Multiply every number in a given range and put the result inside the array
 lc = [x * 2 for x in range(10)]
+
+# lc = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 ```
 
 ## Functions
