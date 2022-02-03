@@ -20,6 +20,7 @@ This file was originally forked from https://github.com/ThibaultJanBeyer/cheatsh
 - [User Input](#user-input)  
 - [Loops](#loops)
 - [Sorting & Comparing](#sorting--comparing)  
+- [Error Handling](#error-handling)
 - [Useful Methods](#useful-methods)
 
 ## Misc
@@ -469,6 +470,42 @@ array = [5,4,1,3,2]
 array.sort! # = [1,2,3,4,5] – works with text and other as well.
 "b" <=> "a" # = 1 – combined comparison operator. Returns 0 if first = second, 1 if first > second, -1 if first < second
 array.sort! { |a, b| b <=> a } # to sort from Z to A instead of A to Z
+```
+
+## Error handling
+```Ruby
+begin
+  Interger("A") # Trying to parse a character to int will fail
+# Rescue will catch the error so you can handle it
+rescue ArgumentError
+  puts 'Input only numbers'
+end
+```
+
+For the most part the `begin` keyword is ommited leaving only:
+```Ruby
+Interger("A")
+rescue ArgumentError
+  puts 'Input only numbers'
+end
+```
+
+### Raise
+You can raise your own errors
+```Ruby
+raise 'Error'
+
+rescue 
+  puts 'Captured a raised error'
+```
+
+### Ensure
+The ensure block will always be executed no matter the error that occured
+```Ruby
+rescue ArgumentError
+  # Handle the error
+ensure
+  puts 'This block always get executed'
 ```
 
 ## Useful Methods
