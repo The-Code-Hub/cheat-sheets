@@ -16,6 +16,10 @@ git switch develop
 ```shell
 # Add every tracked file to the staging area and commit
 git commit -am "title" -m "desc"
+
+# Rewrite the last commit message.
+# This command will open a text editor depending on your system.
+git commit --amend
 ```
 
 ## Remotes
