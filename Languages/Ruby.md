@@ -524,3 +524,4 @@ Time.now # displays the actual time
 ## Conventions
 - Classes and Modules are written in PascalCase (UpperCamelCase)
 - Methods ending with `?` denote that they return a boolean value
+- Methods ending with `!` denotes a potentially dangerous method that can lead to errors
