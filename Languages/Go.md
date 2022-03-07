@@ -22,7 +22,7 @@ name := "hello" // inferred type
 
 var (
     name string = "hello"
-		number int = 5
+    number int = 5
 )
 ```
 
@@ -32,8 +32,8 @@ var (
 const name string = "hello"
 
 const (
-		name string = "hello"
-		number int = 5
+    name string = "hello"
+    number int = 5
 )
 ```
 
@@ -89,8 +89,8 @@ import "fmt"
 
 // Massive imports
 import (
-		"fmt"
-		"os"
+    "fmt"
+    "os"
     "encoding/json"
 )
 ```
@@ -104,7 +104,7 @@ func main() {
 
 // Receives two ints and return an int
 func add(n1, n2 int) int {
-		return n1 + n2
+    return n1 + n2
 }
 
 // varargs - Receive multiple values
@@ -122,7 +122,7 @@ func add (nums ...int) {
 package main // Entry package
 
 func main() { // Entry function
-		// code
+    // code
 }
 ```
 
@@ -130,7 +130,7 @@ func main() { // Entry function
 
 ```swift
 func accepted(id int) (bool, int) {
-	  if something {
+    if something {
         return true
     } else {
         return 10
@@ -152,11 +152,11 @@ b, _ := accepted(10)
 
 ```go
 if value != nil {
-		// Do something.
+    // Do something.
 } else if value == 0{
-		// Do other things.
+    // Do other things.
 } else {
-		// Do other stuff.
+    // Do other stuff.
 }
 ```
 
@@ -166,7 +166,7 @@ if value != nil {
 // For statement
 // For is the only way to loop on Go
 for i:=0; i<10; i++ {
-		// code
+    // code
 }
 
 for { // infinite loop
@@ -175,8 +175,8 @@ for { // infinite loop
 
 // Iterate and get values and index
 for i, v := range something {
-		// i = index
-		// v = value
+    // i = index
+    // v = value
 }
 ```
 
@@ -187,13 +187,13 @@ for i, v := range something {
 // to them after the keyword.
 switch os := runtime.GOOS; os {
     case "darwin":
-		    fmt.Println("OS X.")
-	   case "linux":
-		    fmt.Println("Linux.")
-	   default:
-		  // freebsd, openbsd,
-		  // plan9, windows...
-		  fmt.Printf("%s.\n", os)
+        fmt.Println("OS X.")
+    case "linux":
+        fmt.Println("Linux.")
+    default:
+        // freebsd, openbsd,
+        // plan9, windows...
+       fmt.Printf("%s.\n", os)
 	}
 ```
 
@@ -205,18 +205,18 @@ package main
 import "fmt"
 
 type Person struct {
-		name   string,
-		age    int,
-		height int
+    name   string,
+    age    int,
+    height int
 }
 
 func main() {
-	// Create a Person
-	var person Person = Person{"alex", 21, 180}
-	person2 := Person{"person", 42, 170}
+    // Create a Person
+    var person Person = Person{"alex", 21, 180}
+    person2 := Person{"person", 42, 170}
 	
-	// Access struct values
-	fmt.Println(person.name)
+    // Access struct values
+    fmt.Println(person.name)
 }
 ```
 
@@ -224,19 +224,19 @@ func main() {
 
 ```go
 func main() {
-		var person Person = Person{"alex", 21, 180}
-		// Methods are called on instatiaded structs using . notation
-		person.sayName()
+    var person Person = Person{"alex", 21, 180}
+    // Methods are called on instatiaded structs using . notation
+    person.sayName()
 }
                     
 func (p Person) sayName() {
-		fmt.Println(p.name)
+    fmt.Println(p.name)
 }
 
 // To change the value on a struct, the use of 
 // * pointer is needed.
 func (p *Person) incrementAge(age int) {
-		p.age = age
+    p.age = age
 }
 ```
 
@@ -244,10 +244,10 @@ func (p *Person) incrementAge(age int) {
 
 ```go
 strt := struct {
-        name string
-    }{
-        name: "Naveen R",
-    }
+    name string
+}{
+    name: "Naveen R",
+}
 ```
 
 # Visibility
@@ -265,15 +265,15 @@ func privateFunc() { }
 
 ```go
 func say(s string) {
-	  for i := 0; i < 5; i++ {
-		  time.Sleep(100 * time.Millisecond)
-		  fmt.Println(s)
-	  }
+    for i := 0; i < 5; i++ {
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
 }
 
 func main() {
-	  go say("world")
-	  say("hello")
+    go say("world")
+    say("hello")
 }
 ```
 
@@ -282,22 +282,22 @@ func main() {
 ```go
 // Channels can be accessed from multiple goroutines
 func sum(s []int, c chan int) {
-	  sum := 0
-	  for _, v := range s {
-		  sum += v
-	  }
-	  c <- sum // send sum to c
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum // send sum to c
 }
 
 func main() {
-	  s := []int{7, 2, 8, -9, 4, 0}
+    s := []int{7, 2, 8, -9, 4, 0}
 
-	  c := make(chan int)
-	  go sum(s[:len(s)/2], c)
-	  go sum(s[len(s)/2:], c)
-	  x, y := <-c, <-c // receive from c
+    c := make(chan int)
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c // receive from c
 
-	  fmt.Println(x, y, x+y)
+    fmt.Println(x, y, x+y)
 }
 ```
 
@@ -308,19 +308,19 @@ import "fmt"
 
 func main() {
     tick := time.Tick(100 * time.Millisecond)
-	  boom := time.After(500 * time.Millisecond)
-	  for {
+    boom := time.After(500 * time.Millisecond)
+    for {
         // Select is the same as the switch statement but for channels.
-		    select {
-		        case <-tick:
-			          fmt.Println("tick.")
-		        case <-boom:
-			          fmt.Println("BOOM!")
-			          return
-		        default: // Triggered when no other case is available.
-			          fmt.Println("    .")
-			          time.Sleep(50 * time.Millisecond)
-		    }
+        select {
+            case <-tick:
+                fmt.Println("tick.")
+            case <-boom:
+                fmt.Println("BOOM!")
+                return
+            default: // Triggered when no other case is available.
+                fmt.Println("    .")
+                time.Sleep(50 * time.Millisecond)
+        }
     }
 }
 ```
@@ -334,13 +334,13 @@ func main() {
 import "sync"
 
 func mutexExample() {
-		mutex := sync.Mutex
-		mutex.Lock()
-		// defer makes sure that even if something goes wrong after
+    mutex := sync.Mutex
+    mutex.Lock()
+    // defer makes sure that even if something goes wrong after
     // this line the expression will be executed, in this case
     // the mutex will be unlocked preventing errors.
-		defer mutex.Unlock()
-		// Do something.
+    defer mutex.Unlock()
+    // Do something.
 }
 ```
 
@@ -356,18 +356,18 @@ type Human interface {
 }
 
 type Person struct () {
-		name string
+    name string
 }
 
 func (p Person) Think() {
-		fmt.Println(p.name, " is thinking")
+    fmt.Println(p.name, " is thinking")
 }
 
 func main() {
-		p := Person{"alex"}
-		p.Think()
-		// Here p == Human interface because it implements
-		// all of its methods.
+    p := Person{"alex"}
+    p.Think()
+    // Here p == Human interface because it implements
+    // all of its methods.
 }
 ```
 
@@ -381,7 +381,7 @@ import (
 )
 
 func describe(i interface{}) {
-		// Access the underlying interface value.
+    // Access the underlying interface value.
     fmt.Printf("Type = %T, value = %v\n", i, i)
 }
 
@@ -389,10 +389,10 @@ func main() {
     s := "Hello World"
     describe(s) // Type = string, value = Hello World
     
-		i := 55
+    i := 55
     describe(i) // Type = int, value = 55
     
-		strt := struct {
+    strt := struct {
         name string
     }{
         name: "Naveen R",
