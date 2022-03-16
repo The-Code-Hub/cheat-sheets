@@ -99,7 +99,7 @@ import (
 
 ```go
 func main() {
-		add(1, 1)
+    add(1, 1)
 }
 
 // Receives two ints and return an int
