@@ -405,7 +405,7 @@ myLambda {
 }
 
 // Multiple parameters
-fun sum(lambda: (Int, Int)) {
+fun sum(lambda: (Int, Int) -> Int) {
     lambda.invoke(5, 5) // null-safe lambda invocation
 }
 
