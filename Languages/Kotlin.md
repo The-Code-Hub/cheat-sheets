@@ -355,6 +355,7 @@ class Person() {
         const val NAME = "alex"
     }
 }
+```
 
 ## Objects
 Objects mostly replace the use of static methods that are used in Java.
