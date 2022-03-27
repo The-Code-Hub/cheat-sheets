@@ -7,6 +7,8 @@
 - [Collections](#collections)
 - [Control Flow](#control-flow) 
 - [Classes](#classes)
+- [Objects](#objects)
+- [Interfaces](#interfaces)
 - [Extensions](#extensions)
 - [Lambda](#lambda)
 - [Generics](#generics)
@@ -334,21 +336,28 @@ sealed class ApiResponse<out T: Any> {
 }
 ```
 
-### Interfaces
+### Anonymous classes
+Anonymous classes can inline, extend and instantiate abstract classes.
 
 ```kotlin
-// Interfaces provide templates so classes can override their method
-// signatures.
-
-interface Bank {
-    fun createAccount(name: String, password: Int)
-    fun deposit(amount: Long)
-    fun withdraw(amount: Long)
-    fun closeAccount()
-}
+val detector = object : Detector {
+    override fun detect() {}
+} 
 ```
 
-### Objects
+### Static methods
+```kotlin
+// Static methods and variables can be placed inside the compaion object scope.
+// This is most used for constant values that live inside a class namespace, you don't need
+// to create an instance of Person to access NAME.
+class Person() {
+    companion object {
+        const val NAME = "alex"
+    }
+}
+
+## Objects
+Objects mostly replace the use of static methods that are used in Java.
 ```kotlin
 // Objects are singletons, meaning that only one instance of them exists.
 object Constants {
@@ -361,13 +370,18 @@ object Constants : OtherClass {
 }
 ```
 
-### Anonymous classes
-Anonymous classes can inline, extend and instantiate abstract classes.
+## Interfaces
 
 ```kotlin
-val detector = object : Detector {
-    override fun detect() {}
-} 
+// Interfaces provide templates so classes can override their method
+// signatures.
+
+interface Bank {
+    fun createAccount(name: String, password: Int)
+    fun deposit(amount: Long)
+    fun withdraw(amount: Long)
+    fun closeAccount()
+}
 ```
 
 ## Extensions
