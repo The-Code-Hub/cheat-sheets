@@ -18,7 +18,7 @@
 - [Type casting](#type-casting)
 
 ## Variables
-
+Python can infer variable types, but you can optionally static type anything on the language.
 ```python
 name = "Your Name"
 number = 0
@@ -68,7 +68,7 @@ full_name = first_name + last_name
 ```
 
 #### f string
-
+This is the most used and recommended method to put variables inside strings.
 ```python
 guest = "alex"
 print(f"Hello {guest}!")
@@ -117,26 +117,41 @@ my_tuple = (1, "name")
 my_tuple: tuple[int, str] = (1, "name")
 ```
 
-### Array
-
-Array’s are a list of values from the same type.
+### List
+List’s are collections of values from the same type.
 
 ```python
-empty_array = []
-int_array = [1, 2, 3, 4]
+empty_list = []
+int_list = [1, 2, 3, 4]
 
 # Access by index
-# Array always start at index 0
-int_array[0] # 1
+# Lists always start at index 0
+int_list[0] # 1
 
 # Access by index range
-int_array[0:2] # 1, 2, 3
+int_list[0:2] # 1, 2, 3
 
 # Access the last element
-int_array[-1] # 4
+int_list[-1] # 4
+
+# Add value to the end of the list
+int_list.append(5)
 
 # Static typing
-int_array: list[int] = [1, 2, 3, 4]
+int_list: list[int] = [1, 2, 3, 4]
+```
+
+### Sets
+Sets are collections unordered collection of unique items (there is no duplicates), values inside the set are immutable, but you can remove
+or add new values.
+```python
+# Create a set from values
+my_set = {1, 2, 3}
+
+# Create a set from a list
+set_from_list = set([1, 2, 3, 3, 4])
+# This set will only contain the values 1, 2, 3, 4 because a set
+# cannot contain duplicate values.
 ```
 
 ### Dictionary
@@ -144,10 +159,16 @@ int_array: list[int] = [1, 2, 3, 4]
 Dictionaries are a `key: value` pair data type.
 
 ```python
-person = {1: "one", 2: "two"} 
+person = {"one": 1, "two": 2} 
 
 # Access value by key
-person[1] # "one"
+person["one"] # 1
+
+# Add new key to the dict
+person["three"] = 3
+
+# Reassign the value of an existing key
+person["one"] = 11
 
 # Static typing
 person: dict[int, str]
@@ -173,22 +194,26 @@ for name in name_list:
 ```python
 flag = True
 
-while flag {
+while flag:
     flag = False
-}
 ```
 
-### List comprehension
-
+### List/Dictionary comprehension
+Comprehensions are concise expressions to generate lists or dictionaries.
 ```python
 # Multiply every number in a given range and put the result inside the array
 lc = [x * 2 for x in range(10)]
 
+dc = {num: num*num for num in range(1, 11)}
+
 # lc = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+# dc = {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
 ```
 
 ## Functions
-
+Python always needs indentation to be 4 spaces between function declarations 
+and its body (the same apply for loops, classes and other constructs),
+not doing so will result in errors. See [Indentation](#indentation).
 ```python
 def add(n1, n2):
     return n1 + n2
@@ -199,7 +224,8 @@ def add(n1: int, n2: int) -> int:
 ```
 
 ## Classes
-
+In Python classes methods need to receive the self parameter, meaning that they can be accessed on instantiated classes.
+Classes parameters are also accessed via self.
 ```python
 class Person:
     def __init__(self) -> None:
@@ -330,15 +356,19 @@ if number > 10:
 ```
 
 ## Definition skipping
-
+Sometimes it can be useful to skip a method or function definition.
 ```python
-# Sometimes it can be useful to skip a method or function definition
-
 def to_implement(n1: int, name: str) -> bool:
     ...
 
 class Skip:
     ...
+```
+
+You can change the use of three dots to the pass keyword.
+```python
+def to_implement(n1: int, name: str) -> bool:
+    pass
 ```
 
 ## Type casting
