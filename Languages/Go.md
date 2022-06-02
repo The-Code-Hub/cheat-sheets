@@ -127,8 +127,8 @@ func main() { // Entry function
 ```
 
 ## Multiple returns
-
-```swift
+Go can work with multiple returns out-of-the-box.
+```go
 func accepted(id int) (bool, int) {
     if something {
         return true
@@ -153,7 +153,7 @@ b, _ := accepted(10)
 ```go
 if value != nil {
     // Do something.
-} else if value == 0{
+} else if value == 0 {
     // Do other things.
 } else {
     // Do other stuff.
@@ -165,7 +165,7 @@ if value != nil {
 ```go
 // For statement
 // For is the only way to loop on Go
-for i:=0; i<10; i++ {
+for i := 0; i < 10; i++ {
     // code
 }
 
@@ -246,7 +246,7 @@ func (p *Person) incrementAge(age int) {
 strt := struct {
     name string
 }{
-    name: "Naveen R",
+    name: "Alex",
 }
 ```
 
@@ -262,7 +262,8 @@ func privateFunc() { }
 ```
 
 # Goroutines
-
+Goroutines are like liteweight threads, every function can be dispatched to run on a goroutine simply by calling it with the go keyword
+before the function's name.
 ```go
 func say(s string) {
     for i := 0; i < 5; i++ {
@@ -278,7 +279,7 @@ func main() {
 ```
 
 ## Concurrency
-
+Channels are a way of sending values from multiple goroutines to a single data structure.
 ```go
 // Channels can be accessed from multiple goroutines
 func sum(s []int, c chan int) {
@@ -395,7 +396,7 @@ func main() {
     strt := struct {
         name string
     }{
-        name: "Naveen R",
+        name: "Alex",
     }
     describe(strt) // Type = struct { name string }, value = {Naveen R}
 }
