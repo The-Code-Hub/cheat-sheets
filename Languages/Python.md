@@ -219,6 +219,8 @@ def add(n1, n2):
     return n1 + n2
 
 # Static typing
+# parameter types come after the name with a :, the function return type comes after the parameters
+# and after the arrow ->
 def add(n1: int, n2: int) -> int:
     return n1 + n2
 ```
