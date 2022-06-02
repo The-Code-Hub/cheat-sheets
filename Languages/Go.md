@@ -361,7 +361,7 @@ type Person struct () {
 }
 
 func (p Person) Think() {
-    fmt.Println(p.name, " is thinking")
+    fmt.Println(p.name, "is thinking")
 }
 
 func main() {
