@@ -145,7 +145,7 @@ ArraysLists have the same functionality as Arrays but they are dynamically resiz
 ### Map
 Hashmaps are a data storage in key-value pairs paradigm.
 ```kotlin
-val a: HashMap<String, Int>
+val a = HashMap<String, Int>()
 // Add a new key with a given value.
 a.put(key="Test", value=123)
 // or
