@@ -14,6 +14,9 @@ db
 
 # Show the collections inside database_example
 show collections
+
+# Delete a collection
+db.collection_name.drop()
 ```
 
 ## Find
@@ -44,13 +47,32 @@ db.collection_name.countDocuments({"name": "Alex"})
 ## Insert
 ```bash
 # Insert values
-db.collection_name.insertOne({"name": "paul"}) # Single element
+db.collection_name.insertOne({"name": "paul"}) # Single document
 db.collection_name.insertMany([{"name": "leto"}, {"name": "alisson"}]) # Array
+
+# If ordered is true, if an error occurs in one document, the insertion will be canceled
+# and other documents that are after the current will not be evaluated and inserted.
+# If ordered is false, the insertion will not cancel and add every document that is correct.
+db.collection_name.insertMany([{"name": "leto"}, {"name": "alisson"}], {"ordered": false})
 ```
 
 ## Delete
 ```bash
-db.collection_name.remove({}) # Remove all documents from the collection
-db.collection_name.remove({"name": "Alex"}) # Remove a specific document
-db.collection_name.findOneAndDelete({"name": "Max"}) # Returns the document and delete it
+db.collection_name.deleteMany({}) # Deletes all documents from the collection
+db.collection_name.deleteMany({"name": "Alex"}) # Deletes all documents returned by this query
+
+# Delete only one documented contained in this query
+db.collection_name.deleteOne({"name": "Alex"})
+
+# Returns the document and delete it
+db.collection_name.findOneAndDelete({"name": "Max"}) 
+```
+
+## Update
+```bash
+# Change a value with $set
+db.collection_name.updateOne({"_id": 1}, {$set: {"name": "Alice"}})
+
+# Increment a value with $inc
+db.collection_name.updateOne({"_id": 1}, {$inc: {"age": 10"}})
 ```
