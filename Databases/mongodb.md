@@ -76,3 +76,50 @@ db.collection_name.updateOne({"_id": 1}, {$set: {"name": "Alice"}})
 # Increment a value with $inc
 db.collection_name.updateOne({"_id": 1}, {$inc: {"age": 10"}})
 ```
+
+## Query operators
+$eq  = equal to
+$ne  = not equal to
+$gt  = greater then
+$lt  = lesser then
+$gte = greater then or equal to
+$lte = lesser then or equal to
+
+```bash
+# Issue a query with an operator
+db.collection_name.find({"length": {$gt: 100}})
+db.collection_name.find({"grade": {$gt: 60, $lt: 100}})
+```
+
+## Logic Operators
+$and matches all given clauses
+$or  matches at least one clause
+$nor fails to match given clauses
+$not negates the query
+
+```bash
+# $and is mot of the times implicit
+db.collection_name.find({"major": "CS", "grade": "100"})
+
+# $or, $nor and $and are all used with arrays []
+# Returns every document which contains city CLEVELAND or ALPINE
+db.collection_name.find({$or: [ {"city": "CLEVELAND"}, {"city": "ALPINE"} ]})
+
+# Return every city that is not CLEVELAND or ALPINE
+db.collection_name.find({$nor: [ {"city": "CLEVELAND"}, {"city": "ALPINE"} ]})
+
+# Example nested $or query
+db.collection_name.find({$or: [
+    {$or: [{"category_code": "social"}, {"category_code": "web"}], "founded_year": 2004}, 
+    {$or: [{"category_code": "social"}, {"category_code": "web"}], "founded_month": 10}
+]}).count()
+```
+
+## Expr
+$expr operator works by comparing values from a given operator
+```bash
+# The use of $ on the document fields return the value of each key
+# Here we are comparing that birth_city equals current_living inside each document
+# The query will return every document that matches the said condition
+db.collection_name.find({$expr: {$eq: ["$birth_city", "$current_living"]}}).count()
+```
