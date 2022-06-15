@@ -275,13 +275,17 @@ func say(s string) {
 func main() {
     go say("world")
     say("hello")
+    
+    // In place goroutine call
+    go func() { 
+    }()
 }
 ```
 
 ## Concurrency
 Channels are a way of sending values from multiple goroutines to a single data structure.
 ```go
-// Channels can be accessed from multiple goroutines
+// Channels are used to retrieve and group data from multiple goroutines.
 func sum(s []int, c chan int) {
     sum := 0
     for _, v := range s {
@@ -296,14 +300,14 @@ func main() {
     c := make(chan int)
     go sum(s[:len(s)/2], c)
     go sum(s[len(s)/2:], c)
-    x, y := <-c, <-c // receive from c
+    x, y := <-c, <-c // receive values from c
 
     fmt.Println(x, y, x+y)
 }
 ```
 
 ## Select
-
+Select is the same as the switch statement but for channels.
 ```go
 import "fmt"
 
@@ -311,7 +315,6 @@ func main() {
     tick := time.Tick(100 * time.Millisecond)
     boom := time.After(500 * time.Millisecond)
     for {
-        // Select is the same as the switch statement but for channels.
         select {
             case <-tick:
                 fmt.Println("tick.")
@@ -334,9 +337,12 @@ func main() {
 
 import "sync"
 
+var mutex = sync.Mutex{}
+
 func mutexExample() {
-    mutex := sync.Mutex
+    // Lock the mutext for the current scope
     mutex.Lock()
+    
     // defer makes sure that even if something goes wrong after
     // this line the expression will be executed, in this case
     // the mutex will be unlocked preventing errors.
