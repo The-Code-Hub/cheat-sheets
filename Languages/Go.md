@@ -13,6 +13,7 @@
 - [Goroutines](#goroutines)
 - [Interfaces](#interfaces)
 - [Json](#json)
+- [Generics](#generics)
 
 # Variables
 
@@ -427,5 +428,60 @@ import (
 type response2 struct {
     Page   int      `json:"page"`
     Fruits []string `json:"fruits"`
+}
+```
+
+# Generics
+Go uses [] before function parameters to declare generics. You can create a generic by specifying its name followed by its type or constraint.
+```go
+// Here the V1 generic type can be of type int or float64
+// Then we receive two values that have type V1 and return V1
+func genericSum[V1 int | float64](value1 V1, value2 V1) V1 {
+    return value1 + value2
+}
+
+func main() {
+    var i int = genericSum(1, 1)
+    var f float64 = genericSum(1.2, 1.5)
+ 
+    // Here the types conflict and the addition cannot be made plus the return type is unknown 
+    unknown := genericSum(1, 1.2) // compile error
+}
+```
+
+## Constraints
+You can constrain the generic values you receive in a function by specifying a constraint, which can be a type that implements an interface or just primitive types.
+```go
+type MyConstraint interface {
+    Constrained()
+}
+
+type ConstrainedStruct struct {
+    value string
+}
+
+func (c ConstrainedStruct) Constrained() {
+    fmt.Println("I'm constrained to the MyConstraint interface")
+}
+
+// Here testConstraint will only receive types which implement the MyConstraint interface
+func testConstraint[C MyConstraint](value C) {
+    value.Constrained()
+}
+```
+```go
+type numbers interface {
+    int64 | float64
+}
+
+// Here numbers can only be of type int64 or float64
+func only64[V numbers](nums []V) V {
+    var sum V
+
+    for _, v := range nums {
+        sum += v
+    }
+
+    return sum
 }
 ```
